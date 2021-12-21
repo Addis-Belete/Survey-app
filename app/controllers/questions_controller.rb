@@ -10,6 +10,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.create!(question_params)
-    json_response(@user, :created)
+    json_response(@question, :created)
   end
 end

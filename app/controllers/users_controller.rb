@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     if @user.save
       json_response(@user, :created)
     end
+
+    def update
+      @user = User.find(params[:id])
+      if @user.update(user_params)
+        json_response(@user)
+      end
+    end
   end
 
   private

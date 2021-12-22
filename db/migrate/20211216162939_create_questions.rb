@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
     create_table :questions do |t|
       t.string :typeOf_question
       t.string :question
-      t.string :choice
+      t.string :choice, array: true, default: []
 
       t.timestamps
     end

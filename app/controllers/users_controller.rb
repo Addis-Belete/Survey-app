@@ -20,6 +20,11 @@ class UsersController < ApplicationController
         json_response(@user)
       end
     end
+
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+    end
   end
 
   private

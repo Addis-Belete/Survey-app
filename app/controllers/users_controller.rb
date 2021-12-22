@@ -9,13 +9,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create!(user_params)
-    json_response(@user, :created)
+    @user = User.new(user_params)
+    if @user.save
+      json_response(@user, :created)
+    end
   end
 
   private
 
   def user_params
-    params.permit(:first_name, :last_name, :email, :password, :confirm_password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :confirm_password)
   end
 end

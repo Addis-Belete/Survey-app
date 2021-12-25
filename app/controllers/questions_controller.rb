@@ -4,7 +4,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.find(params[:id])
     json_response(@question)
   end
 

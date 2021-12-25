@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2021_12_25_063530) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "questions", force: :cascade do |t|
     t.text "question_title"
     t.string "question_type"
-    t.text "choices", default: "--- []\n"
-    t.integer "survey_id", null: false
+    t.text "choices", default: [], array: true
+    t.bigint "survey_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_id"], name: "index_questions_on_survey_id"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_12_25_063530) do
 
   create_table "surveys", force: :cascade do |t|
     t.string "survey_title"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_surveys_on_user_id"

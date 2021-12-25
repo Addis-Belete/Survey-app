@@ -14,6 +14,13 @@ class SurveysController < ApplicationController
     json_response(@survey, :created)
   end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @survey = @user.comments.find(params[:id])
+    @survey.destroy
+    json_response("Succeffully Deleted")
+  end
+
   private
 
   def survey_params

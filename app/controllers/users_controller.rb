@@ -10,20 +10,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      json_response(@user, :created)
-    end
+    json_response(@user, :created) if @user.save
 
     def update
       @user = User.find(params[:id])
-      if @user.update(user_params)
-        json_response(@user)
-      end
+      json_response(@user) if @user.update(user_params)
     end
 
     def destroy
       @user = User.find(params[:id])
       @user.destroy
+      json_response("User succsfully Deleted")
     end
   end
 

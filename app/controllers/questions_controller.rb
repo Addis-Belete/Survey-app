@@ -15,4 +15,12 @@ class QuestionsController < ApplicationController
     @question = @survey.questions.create(question_params)
     json_response(@question, :created)
   end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @survey = @user.surveys.find(params[:survey_id])
+    @question = @survey.questions.find(params[:id])
+    @question.destroy
+    json_response("Question succesfully deleted")
+  end
 end

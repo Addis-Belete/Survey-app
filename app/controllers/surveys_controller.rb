@@ -13,4 +13,10 @@ class SurveysController < ApplicationController
     @survey = @user.surveys.create(survey_params)
     json_response(@survey, :created)
   end
+
+  private
+
+  def survey_params
+    params.require(:survey).permit(:survey_title)
+  end
 end

@@ -23,4 +23,10 @@ class QuestionsController < ApplicationController
     @question.destroy
     json_response("Question succesfully deleted")
   end
+
+  private
+
+  def question_params
+    params.require(:question).permit(:question_title, :question_type, :choices)
+  end
 end

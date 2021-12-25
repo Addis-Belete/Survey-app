@@ -10,7 +10,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create!(question_params)
+    @user = User.find(params[:user_id])
+    @survey = @user.surveys.find(params[:survey_id])
+    @question = @survey.questions.create(question_params)
     json_response(@question, :created)
   end
 end

@@ -10,18 +10,22 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    render json: @user if @user.save
-
-    def update
-      @user = User.find(params[:id])
-      render json: @user if @user.update(user_params)
+    if @user.save
+      render json: @user, status: :created
+    else
+      render json: @user.error, status: :unproccessable_entity
     end
+  end
 
-    def destroy
-      @user = User.find(params[:id])
-      @user.destroy
-      render json: ("User succsfully Deleted")
-    end
+  def update
+    @user = User.find(params[:id])
+    render json: @user if @user.update(user_params)
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    render json: ("User succsfully Deleted")
   end
 
   private

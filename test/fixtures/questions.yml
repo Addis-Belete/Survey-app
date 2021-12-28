@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  typeOf_question: MyString
-  question: MyString
+  question_title: MyText
+  question_type: MyString
   choice: MyString
+  survey: one
 
 two:
-  typeOf_question: MyString
-  question: MyString
+  question_title: MyText
+  question_type: MyString
   choice: MyString
+  survey: two

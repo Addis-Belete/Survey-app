@@ -1,19 +1,20 @@
 class QuestionsController < ApplicationController
   def index
-    json_response(@question.all)
+    @survey = Survey.find(params[:survey_id])
+    render json: @survey.questions.all
   end
 
   def show
     @survey = Survey.find(params[:survey_id])
     @question = @survey.questions.find(params[:id])
-    json_response(@question)
+    render json: @question
   end
 
   def create
     @user = User.find(params[:user_id])
     @survey = @user.surveys.find(params[:survey_id])
     @question = @survey.questions.create(question_params)
-    json_response(@question, :created)
+    render json: @question
   end
 
   def destroy
@@ -21,7 +22,7 @@ class QuestionsController < ApplicationController
     @survey = @user.surveys.find(params[:survey_id])
     @question = @survey.questions.find(params[:id])
     @question.destroy
-    json_response('Question succesfully deleted')
+    render json: ("Question succesfully deleted")
   end
 
   private

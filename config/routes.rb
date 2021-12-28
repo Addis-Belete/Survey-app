@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
   end
   resources :surveys, only: [:index, :show] do
-    resources :questions, only: [:show]
+    resources :questions, only: [:index, :show]
   end
 end

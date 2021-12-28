@@ -10,13 +10,13 @@ class SurveysController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @survey = @user.surveys.create(survey_params)
+    @survey = @user.survey.create(survey_params)
     render json: @survey
   end
 
   def destroy
     @user = User.find(params[:user_id])
-    @survey = @user.comments.find(params[:id])
+    @survey = @user.survey.find(params[:id])
     @survey.destroy
     render json: ("Succeffully Deleted")
   end

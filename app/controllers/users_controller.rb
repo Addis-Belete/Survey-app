@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    render json: User.all
+    render json: { status: "SUCCESS", message: "Loaded users", data: User.all }
   end
 
   def show

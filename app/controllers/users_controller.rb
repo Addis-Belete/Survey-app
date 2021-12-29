@@ -11,9 +11,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created
+      render json: { status: "SUCCESS", message: "user created successfully", data: @user }, status: :created
     else
-      render json: @user.error, status: :unproccessable_entity
+      render json: { status: "FAILED", message: "user nott saved", data: @user.error }, status: :unproccessable_entity
     end
   end
 

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: { status: "SUCCESS", message: "user created successfully", data: @user }, status: :created
     else
-      render json: { status: "FAILED", message: "user nott saved", data: @user.error }, status: :unproccessable_entity
+      render json: { status: "FAILED", message: "user not saved", data: @user.errors }, status: :unproccessable_entity
     end
   end
 

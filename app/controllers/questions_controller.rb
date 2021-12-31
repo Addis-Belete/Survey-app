@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @survey = @user.surveys.find(params[:survey_id])
+    @survey = @user.survey.find(params[:survey_id])
     @question = @survey.question.create(question_params)
     render json: @question
   end
@@ -28,6 +28,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question_title, :question_type, :choices)
+    params.require(:question).permit(:question_title, :question_type, choices: [])
   end
 end

@@ -1,4 +1,6 @@
 class SurveysController < ApplicationController
+  before_action :authentication
+
   def index
     render json: Survey.all
   end
@@ -18,7 +20,7 @@ class SurveysController < ApplicationController
     @user = User.find(params[:user_id])
     @survey = @user.survey.find(params[:id])
     @survey.destroy
-    render json: 'Succeffully Deleted'
+    render json: "Succeffully Deleted"
   end
 
   private

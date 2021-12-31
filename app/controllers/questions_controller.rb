@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @survey = @user.surveys.find(params[:survey_id])
     @question = @survey.question.find(params[:id])
     @question.destroy
-    render json: ("Question succesfully deleted")
+    render json: 'Question succesfully deleted'
   end
 
   private

@@ -1,41 +1,35 @@
 class ApplicationController < ActionController::API
-  SECRET = "AddisBelete"
+  SECRET = 'AddisBelete'.freeze
 
   def authentication
-    decode_data = decode_user_data(request.headers["token"])
-    user_data = decode_data[0]["user_id"] unless !decode_data
+    decode_data = decode_user_data(request.headers['token'])
+    user_data = decode_data[0]['user_id'] if decode_data
     user = User.find(user_data&.id)
 
     if user
-      return true
+      true
     else
-      render json: { message: "Invalid Credentials" }
+      render json: { message: 'Invalid Credentials' }
     end
   end
 
-  def encode_user_data(payload)
-    token = JWT.encode payload, SECRET, "HS256"
-    return token
-  end
+  # def encode_user_data(payload)
+  # JWT.encode payload, SECRET, 'HS256'
+  # end
 
   def encode_user_data(payload)
-    JWT.encode payload, SECRET, "HS256"
+    JWT.encode payload, SECRET, 'HS256'
   end
 
   def decode_user_data(token)
-    begin
-      data = JWT.decode token, SECRET, true, { algorthim: "HS256" }
-      return data
-    rescue => exception
-      puts exception
-    end
+    JWT.decode token, SECRET, true, { algorthim: 'HS256' }
+  rescue StandardError => e
+    puts e
   end
 
-  def decode_user_data(token)
-    begin
-      JWT.decode token, SECRET, true, { algorthim: "HS256" }
-    rescue => exception
-      puts exception
-    end
-  end
+  # def decode_user_data(token)
+  #  JWT.decode token, SECRET, true, { algorthim: 'HS256' }
+  # rescue StandardError => e
+  # puts e
+  # end
 end

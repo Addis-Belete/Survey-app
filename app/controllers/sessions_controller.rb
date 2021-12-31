@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def signup
     @user = User.new(user_params)
     if @user.save
-      token = encode_user_data({ user_data: user.id })
+      token = encode_user_data({ user_data: @user.id })
       render json: { token: token }
     else
       render json: { message: "Invalid credentials" }
@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
   end
 
   def login
-    user = User.find_by(email: param[:email])
-    if user && user.password == param[:password]
+    user = User.find_by(email: params[:email])
+    if user.password == params[:password]
       token = encode_user_data({ user_data: user.id })
       render json: { token: token }
     else
@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :confirm_password)
+    params.require(:session).permit(:first_name, :last_name, :email, :password, :confirm_password)
   end
 end

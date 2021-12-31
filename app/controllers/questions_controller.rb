@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authentication
+
   def index
     @survey = Survey.find(params[:survey_id])
     render json: @survey.question.all
@@ -22,7 +24,7 @@ class QuestionsController < ApplicationController
     @survey = @user.surveys.find(params[:survey_id])
     @question = @survey.question.find(params[:id])
     @question.destroy
-    render json: 'Question succesfully deleted'
+    render json: "Question succesfully deleted"
   end
 
   private

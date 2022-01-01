@@ -24,3 +24,4 @@ Things you may want to cover:
 - Deployment instructions
 
 - ...
+- This App contains user authentication

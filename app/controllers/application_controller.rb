@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  SECRET = "AddisBelete".freeze
+  SECRET = Rails.application.secrets.secret_key_base.to_s
 
   def authentication
     decode_data = decode_user_data(request.headers["token"])

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def login
-    user = User.find_by(email: params[:email])
+    user = User.find_by_email(params[:email])
     if user.password == params[:password]
       token = encode_user_data({ user_data: user.id })
       render json: { token: token }

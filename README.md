@@ -25,3 +25,4 @@ Things you may want to cover:
 
 - ...
 - This App contains user authentication
+-after tomorrow u have an interview at MMCY so be ready and be confident. You know tchilaleh tseraleh ena berta...talfaleh yemitchilewn yahl tezegaj emitakewn melis aleke this is it. Lene kalew yetm ayhedm..ena taking interview is also big experience and looking at this amazing shop also big apportunity. Berta Dude..

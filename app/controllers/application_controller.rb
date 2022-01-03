@@ -1,35 +1,31 @@
 class ApplicationController < ActionController::API
+  before_action :authorized
   SECRET = Rails.application.secrets.secret_key_base.to_s
 
-  def authentication
-    decode_data = decode_user_data(request.headers["token"])
-    user_data = decode_data[0]["user_id"] if decode_data
-    user = User.find(user_data&.id)
+  def encode_token(payload)
+    JWT.encode(payload, SECRET)
+  end
 
-    if user
-      true
-    else
-      render json: { message: "Invalid Credentials" }
+  def auth_header
+    request.headers["Authorization"]
+  end
+
+  def decoded_token
+    if auth_header
+      token = auth_header.split(" ")[1]
+      begin
+        JWT.decode(token, SECRET, true, algorithm: "HS256")
+      rescue JWT::DecodeError
+        nil
+      end
     end
   end
 
-  def encode_user_data(payload)
-    JWT.encode payload, SECRET, "HS256"
+  def logged_in?
+    !!logged_in_user
   end
 
-  def encode_user_data(payload)
-    JWT.encode payload, SECRET, "HS256"
-  end
-
-  def decode_user_data(token)
-    JWT.decode token, SECRET, true, { algorthim: "HS256" }
-  rescue StandardError => e
-    puts e
-  end
-
-  def decode_user_data(token)
-    JWT.decode token, SECRET, true, { algorthim: "HS256" }
-  rescue StandardError => e
-    puts e
+  def authorizes
+    render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
   end
 end

@@ -28,3 +28,4 @@ Things you may want to cover:
 -after tomorrow u have an interview at MMCY so be ready and be confident. You know tchilaleh tseraleh ena berta...talfaleh yemitchilewn yahl tezegaj emitakewn melis aleke this is it. Lene kalew yetm ayhedm..ena taking interview is also big experience and looking at this amazing shop also big apportunity. Berta Dude..
 Hello world again
 - I will continue from tomorrow
+- another day with one commit
